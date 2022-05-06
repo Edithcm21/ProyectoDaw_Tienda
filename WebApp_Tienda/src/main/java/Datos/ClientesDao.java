@@ -1,0 +1,178 @@
+package Datos;
+
+import Modelo.ClientesBin;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ClientesDao {
+
+
+    public static final String select = "Select * from clientes order by id_cliente";
+    public static final String insert="insert into clientes(nombre,apellidos,colonia,ciudad,calle,avenida,estado,telefono) values (?,?,?,?,?,?,?,?)";
+    public static final String delete="delete from clientes where id_cliente=?";
+    public static final String modificar="Update clientes set nombre=?, apellidos=?, colonia=?,ciudad=?,calle=?,avenida=?,estado=?, telefono=? where id_cliente=?";
+
+    //Seleccionar
+
+    public List<ClientesBin> Select()
+    {
+        Statement st ;
+        ResultSet rs ;
+        ClientesBin cliente;
+
+        List<ClientesBin> clientes= new ArrayList<>();
+
+        try {
+            Connection con = Conexion.getConexion();
+            assert con != null;
+            st = con.createStatement();
+            rs = st.executeQuery(select);
+
+            while (rs.next()) {
+
+
+                int Id_Cliente = rs.getInt("id_cliente");
+                String Nombre = rs.getString("nombre");
+                String Apellido=rs.getString("apellidos");
+                String Colonia =rs.getString("colonia");
+                String Ciudad=rs.getString("ciudad");
+                String Calle=rs.getString("calle");
+                String Avenida=rs.getString("avenida");
+                String Estado=rs.getString("estado");
+                String Telefono= rs.getString("telefono");
+
+                cliente=new ClientesBin(Id_Cliente,Nombre,Apellido,Colonia,Ciudad,Calle,Avenida,Estado,Telefono);
+                clientes.add(cliente);
+
+            }
+
+
+            Conexion.close(st);
+            Conexion.close(rs);
+            Conexion.close(con);
+
+          /*  for (ClientesBin rep : clientes) {
+
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+                System.out.println("Id: " + rep.getId_cliente());
+            }*/
+            // Esto aun estoy pensando como lo utilizare asi que lo dejare asi
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+        return clientes;
+    }
+
+    //insertar
+    public void insertar(ClientesBin cliente) {
+
+        Connection con;
+        PreparedStatement st;
+
+        try {
+            con = Conexion.getConexion();
+            assert con != null;
+            st = con.prepareStatement(insert);
+            st.setString(1,cliente.getNombre());
+            st.setString(2,cliente.getApellido());
+            st.setString(3,cliente.getColonia());
+            st.setString(4,cliente.getCiudad());
+            st.setString(5,cliente.getCalle());
+            st.setString(6,cliente.getAvenida());
+            st.setString(7,cliente.getEstado());
+            st.setString(8,cliente.getTelefono());
+
+            if (st.executeUpdate()==1)
+                System.out.println("Registro Exitoso");
+
+            Conexion.close(con);
+            Conexion.close(st);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //modificar
+
+    public void modificar(ClientesBin cliente)
+    {
+        Connection con;
+        PreparedStatement st;
+
+        try{
+            con=Conexion.getConexion();
+            assert con != null;
+            st=con.prepareStatement(modificar);
+
+            st.setString(1,cliente.getNombre());
+            st.setString(2,cliente.getApellido());
+            st.setString(3,cliente.getColonia());
+            st.setString(4,cliente.getCiudad());
+            st.setString(5,cliente.getCalle());
+            st.setString(6,cliente.getAvenida());
+            st.setString(7,cliente.getEstado());
+            st.setString(8,cliente.getTelefono());
+            st.setInt(9,cliente.getId_cliente());
+
+            if(st.executeUpdate()==1)
+                System.out.println("Registro Actualizado");
+
+            Conexion.close(con);
+            Conexion.close(st);
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error");
+        }
+
+
+    }
+
+
+
+    //eliminar
+    public void borrar(ClientesBin cliente)
+    {
+        Connection con;
+        PreparedStatement st;
+
+        try{
+            con=Conexion.getConexion();
+            assert con != null;
+            st=con.prepareStatement(delete);
+
+            st.setInt(1,cliente.getId_cliente());
+
+            if(st.executeUpdate()==1)
+                System.out.println("Registro Eliminado");
+
+            Conexion.close(con);
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
+
+
+}
