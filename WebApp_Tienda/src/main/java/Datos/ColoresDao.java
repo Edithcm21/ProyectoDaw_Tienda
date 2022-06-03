@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ColoresDao {
 
-    public static final String select = "Select * from colores order by Categoria";
+    public static final String select = "Select * from colores order by id_color";
     public static final String insert="insert into colores(color) values (?)";
     public static final String delete="delete from colores where id_color=?";
     public static final String modificar="Update colores set colores=? where id_color=?";
@@ -140,8 +140,28 @@ public class ColoresDao {
 
     }
 
+    public ColoresBin listarId(int id)
+    {
+        ColoresBin color=new ColoresBin();
+        String sql="Select * from colores where id_color="+id;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(sql);
+            rs=st.executeQuery();
+            while (rs.next()){
+                color.setNombre_color(rs.getString(2));
+            }
+            Conexion.close(conec);
+            st.close();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
-
+        return color;
+    }
 }

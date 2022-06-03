@@ -1,5 +1,6 @@
 package Datos;
 
+import Modelo.CategoriaBin;
 import Modelo.TallasBin;
 
 import java.sql.*;
@@ -9,10 +10,10 @@ import java.util.List;
 public class TallasDao {
 
 
-    public static final String select = "Select * from talla order by talla";
-    public static final String insert="insert into talla(talla) values (?)";
-    public static final String delete="delete from talla where Id_talla=?";
-    public static final String modificar="Update talla set talla=? where id_talla=?";
+    public static final String select = "Select * from tallas order by talla";
+    public static final String insert="insert into tallas(talla) values (?)";
+    public static final String delete="delete from tallas where Id_talla=?";
+    public static final String modificar="Update tallas set talla=? where id_talla=?";
 
     //Seleccionar
 
@@ -142,8 +143,29 @@ public class TallasDao {
 
     }
 
+    public TallasBin listarId(int id)
+    {
+        TallasBin talla=new TallasBin();
+        String sql="Select * from tallas where id_talla="+id;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(sql);
+            rs=st.executeQuery();
+            while (rs.next()){
+                talla.setNombretalla(rs.getString(2));
+            }
+            Conexion.close(conec);
+            st.close();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
+        return talla;
+    }
 
 }

@@ -1,6 +1,0 @@
-0:0:0:0:0:0:0:1 - - [28/Apr/2022:11:36:39 -0500] "GET /WebApp_Tienda HTTP/1.1" 302 - http-bio-8080-exec-2 0
-0:0:0:0:0:0:0:1 - - [28/Apr/2022:11:36:40 -0500] "GET /WebApp_Tienda HTTP/1.1" 302 - http-bio-8080-exec-3 0
-0:0:0:0:0:0:0:1 - - [28/Apr/2022:11:36:40 -0500] "GET /WebApp_Tienda HTTP/1.1" 302 - http-bio-8080-exec-4 0
-0:0:0:0:0:0:0:1 - - [28/Apr/2022:11:36:42 -0500] "GET /WebApp_Tienda/ HTTP/1.1" 200 52 http-bio-8080-exec-1 2846
-0:0:0:0:0:0:0:1 - - [28/Apr/2022:11:36:42 -0500] "GET /WebApp_Tienda/ HTTP/1.1" 200 52 http-bio-8080-exec-6 4
-0:0:0:0:0:0:0:1 - - [28/Apr/2022:11:36:43 -0500] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-7 0

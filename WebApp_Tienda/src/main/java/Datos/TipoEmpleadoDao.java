@@ -1,5 +1,7 @@
 package Datos;
 
+import Modelo.ColoresBin;
+import Modelo.TallasBin;
 import Modelo.TipoEmpleadoBin;
 
 import java.sql.*;
@@ -140,5 +142,30 @@ public class TipoEmpleadoDao {
         }
 
 
+    }
+
+    public TipoEmpleadoBin listarId(int id)
+    {
+        TipoEmpleadoBin tipo=new TipoEmpleadoBin();
+        String sql="Select * from tipo_empleado where id_tipo="+id;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(sql);
+            rs=st.executeQuery();
+            while (rs.next()){
+                tipo.setTipo(rs.getString(2));
+            }
+            Conexion.close(conec);
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return tipo;
     }
 }

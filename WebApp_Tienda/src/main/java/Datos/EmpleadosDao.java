@@ -14,6 +14,43 @@ public class EmpleadosDao {
     public static final String insert="insert into empleados(nombre,apellidos,colonia,ciudad,calle,avenida,estado,telefono,fecha_nac,tipo_empleado,sueldo) values (?,?,?,?,?,?,?,?,?,?,?)";
     public static final String delete="delete from empleados where id_empleado=?";
     public static final String modificar="Update empleados set  colonia=?,ciudad=?,calle=?,avenida=?,estado=?, telefono=?, tipo_empleado=?,sueldo=? where id_empleado=?";
+    public static final String validar="Select * from empleados where usu=? and pass=?";
+
+    //validar
+
+    public EmpleadosBin validar(String user, String password)  {
+        PreparedStatement st ;
+        ResultSet rs ;
+        EmpleadosBin usuario=new EmpleadosBin();
+
+        try {
+            Connection con = Conexion.getConexion();
+            assert con != null;
+            st = con.prepareStatement(validar);
+            st.setString(1,user);
+            st.setString(2,password);
+            rs= st.executeQuery();
+            while (rs.next())
+            {
+                int id=rs.getInt("id_empleado");
+                String nombre=rs.getString("nombre");
+                String apellido=rs.getString("apellidos");
+                String u=rs.getString("usu");
+                String pass=rs.getString("pass");
+                usuario=new EmpleadosBin(id,nombre,apellido,u,password);
+
+            }
+
+            Conexion.close(st);
+            Conexion.close(rs);
+            Conexion.close(con);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuario;
+    }
 
     //Seleccionar
 
@@ -55,20 +92,6 @@ public class EmpleadosDao {
             Conexion.close(st);
             Conexion.close(rs);
             Conexion.close(con);
-
-          /*  for (ClientesBin rep : clientes) {
-
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-                System.out.println("Id: " + rep.getId_cliente());
-            }*/
-            // Esto aun estoy pensando como lo utilizare asi que lo dejare asi
 
         } catch (SQLException e) {
             e.printStackTrace();

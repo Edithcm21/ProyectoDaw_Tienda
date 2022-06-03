@@ -1,0 +1,47 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: BlinkMacSystemFont, sans-serif;
+}
+
+nav{
+    max-width: 100%;
+    background-color: coral;
+    font-size: 100%;
+    margin: 50px auto auto;
+}
+.menu-horizontal{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+.menu-horizontal >li >a{
+    display: block;
+    padding: 20px 30px;
+    color: white;
+    text-decoration: none;
+}
+.menu-horizontal >li:hover{
+    background-color: lightcoral;
+}
+.menu-vertical{
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 200px;
+    background-color: coral;
+}
+.menu-horizontal li:hover .menu-vertical{
+    display: block;
+}
+.menu-vertical li:hover{
+    background-color: lightcoral;
+}
+.menu-vertical li a{
+    display: block;
+    color: white;
+    padding: 15px 15px;
+    text-decoration: none;
+
+}

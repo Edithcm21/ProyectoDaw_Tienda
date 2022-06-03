@@ -7,7 +7,6 @@ public class EmpleadosBin implements Serializable {
     private int id_empleado;
     private String nombre;
     private String apellido;
-    //Como la direccion es un tipo en la class los pondre separados
     private String colonia;
     private String ciudad;
     private String calle;
@@ -17,6 +16,9 @@ public class EmpleadosBin implements Serializable {
     private Date fecha_nac;
     private int tipo_empleado;
     private int sueldo;
+    private String user;
+    private String password;
+
 
     public EmpleadosBin(){}
 
@@ -66,8 +68,16 @@ public class EmpleadosBin implements Serializable {
         this.tipo_empleado = tipo_empleado;
         this.sueldo = sueldo;
     }
+//validar
+    public EmpleadosBin(int id_empleado, String nombre, String apellido, String user, String password) {
+        this.id_empleado = id_empleado;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.user = user;
+        this.password = password;
+    }
 
-    // borrar
+// borrar
 
     public EmpleadosBin(int id_empleado) {
         this.id_empleado = id_empleado;
@@ -170,4 +180,12 @@ public class EmpleadosBin implements Serializable {
     public void setSueldo(int sueldo) {
         this.sueldo = sueldo;
     }
+
+    public String getUser() { return user;}
+
+    public void setUser(String user) { this.user = user;}
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password;}
 }

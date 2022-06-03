@@ -12,12 +12,26 @@ public class ClientesBin implements Serializable {
     private String avenida;
     private String estado;
     private String Telefono;
+    private String user;
+    private String password;
 
     public ClientesBin()
     {
 
     }
+
+    public ClientesBin(int id_cliente, String nombre, String apellido, String user, String password) {
+        this.id_cliente = id_cliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.user = user;
+        this.password = password;
+    }
+
     /**** Metodos *******/
+
+    // validar
+
 
     //Metodo para seleccionar todos los datos y para modificar
 
@@ -128,6 +142,14 @@ public class ClientesBin implements Serializable {
     public void setTelefono(String telefono) {
         Telefono = telefono;
     }
+
+    public String getUser() { return user; }
+
+    public void setUser(String user) { this.user = user; }
+
+    public String getPassword() {return password; }
+
+    public void setPassword(String password) { this.password = password; }
 }
 
 

@@ -42,12 +42,7 @@ public class CategoriaDao {
             Conexion.close(rs);
             Conexion.close(con);
 
-            for (CategoriaBin rep : categoria) {
 
-                System.out.println("Id: " + rep.getId_categoria());
-                System.out.println("Nombre: " + rep.getNombre_categoria());
-
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -140,9 +135,29 @@ public class CategoriaDao {
 
     }
 
+    public CategoriaBin listarId(int id)
+    {
+        CategoriaBin cat=new CategoriaBin();
+        String sql="Select * from categoria where id_categoria="+id;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(sql);
+            rs=st.executeQuery();
+            while (rs.next()){
+                cat.setNombre_categoria(rs.getString(2));
+            }
+            Conexion.close(conec);
+            st.close();
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
-
+     return cat;
+    }
 
 }

@@ -1,5 +1,6 @@
 package Datos;
 
+
 import Modelo.ProductosColorTallaBin;
 
 import java.sql.*;
@@ -11,9 +12,56 @@ public class ProductosColorTallaDao {
 
 
     public static final String select = "Select * from productos_tallacolor order by id_producto";
-    public static final String insert="insert into productos_tallacolor(id_producto,color,foto,talla,cantidad) values (?,?,?,?,?)";
+    public static final String insert="insert into productos_tallacolor(id_producto,color,foto,talla,cantidad,precio) values (?,?,?,?,?,?)";
     public static final String delete="delete from productos_tallacolor where id_alternocolor=?";
-    public static final String modificar="Update productos_tallacolor set id_producto=?, cantidad=?, foto=? where id_alternocolor=?";
+    public static final String modificar="Update productos_tallacolor set id_producto=?,color=?,talla=?, cantidad=?,precio=?, foto=? where id_alternocolor=?";
+    public static final String joinprincipal="select id_alternocolor,productos.nombre,productos.id_producto,productos.descripcion,foto,precio from productos_tallacolor\n" +
+            "join productos\n" +
+            "on productos.id_producto=productos_tallacolor.id_producto";
+
+    //Seleccionar
+
+    public List<ProductosColorTallaBin>Join1()
+    {
+        Statement st ;
+        ResultSet rs ;
+        ProductosColorTallaBin producto;
+
+
+        List<ProductosColorTallaBin> productos = new ArrayList<>();
+
+        try {
+            Connection con = Conexion.getConexion();
+            assert con != null;
+            st = con.createStatement();
+            rs = st.executeQuery(joinprincipal);
+
+            while (rs.next()) {
+                int id_alterno=rs.getInt(1);
+                String nombre=rs.getString(2);
+                int id_producto=rs.getInt(3);
+                String descripcion=rs.getString(4);
+                String foto=rs.getString(5);
+                int precio=rs.getInt(6);
+
+
+                producto=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio);
+                System.out.println(precio);
+                productos.add(producto);
+
+
+            }
+
+
+            Conexion.close(st);
+            Conexion.close(rs);
+            Conexion.close(con);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productos;
+    }
 
     //Seleccionar
 
@@ -39,8 +87,9 @@ public class ProductosColorTallaDao {
                 String foto=rs.getString("foto");
                 int talla=rs.getInt("talla");
                 int cantidad=rs.getInt("cantidad");
+                int precio=rs.getInt("precio");
 
-                producto=new ProductosColorTallaBin(id_producto,color,talla,cantidad,foto);
+                producto=new ProductosColorTallaBin(id_producto,id_alterno,color,talla,cantidad,foto,precio);
                 productos.add(producto);
 
 
@@ -50,14 +99,10 @@ public class ProductosColorTallaDao {
             Conexion.close(st);
             Conexion.close(rs);
             Conexion.close(con);
-            //for()...
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
         return productos;
     }
 
@@ -72,9 +117,10 @@ public class ProductosColorTallaDao {
             st = con.prepareStatement(insert);
             st.setInt(1,producto.getId_producto());
             st.setInt(2,producto.getColor());
-            st.setString(3,producto.getFoto());
+            st.setString(3, producto.getFoto());
             st.setInt(4,producto.getTalla());
             st.setInt(5,producto.getCantidad());
+            st.setInt(6,producto.getPrecio());
 
 
             if (st.executeUpdate()==1)
@@ -93,25 +139,25 @@ public class ProductosColorTallaDao {
     {
         Connection con;
         PreparedStatement st;
+        System.out.println("Entro al actualizar");
 
         try{
             con=Conexion.getConexion();
             assert con != null;
             st=con.prepareStatement(modificar);
-
             st.setInt(1,producto.getId_producto());
-            st.setInt(2,producto.getCantidad());
-            st.setString(3,producto.getFoto());
-            st.setInt(4,producto.getId_alterno());
-
-
+            st.setInt(2,producto.getColor());
+            st.setInt(3,producto.getTalla());
+            st.setInt(4,producto.getCantidad());
+            st.setInt(5,producto.getPrecio());
+            st.setString(6,producto.getFoto());
+            st.setInt(7,producto.getId_alterno());
+            System.out.println("Entro al try");
             if(st.executeUpdate()==1)
                 System.out.println("Registro Actualizado");
 
             Conexion.close(con);
             Conexion.close(st);
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -120,8 +166,6 @@ public class ProductosColorTallaDao {
 
 
     }
-
-
 
     //eliminar
     public void borrar( ProductosColorTallaBin producto)
@@ -133,7 +177,6 @@ public class ProductosColorTallaDao {
             con=Conexion.getConexion();
             assert con != null;
             st=con.prepareStatement(delete);
-
             st.setInt(1,producto.getId_alterno());
 
             if(st.executeUpdate()==1)
@@ -148,5 +191,39 @@ public class ProductosColorTallaDao {
 
 
     }
+
+    public ProductosColorTallaBin listarId(int id)
+    {
+        ProductosColorTallaBin prod=null;
+        String sql="Select * from Productos_tallacolor where id_alternocolor="+id;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(sql);
+            rs=st.executeQuery();
+            while (rs.next()){
+                int id_producto=rs.getInt("id_producto");
+                int id_alterno=rs.getInt("id_alternocolor");
+                int color=rs.getInt("color");
+                String foto=rs.getString("foto");
+                int talla=rs.getInt("talla");
+                int cantidad=rs.getInt("cantidad");
+                int precio=rs.getInt("precio");
+                prod=new ProductosColorTallaBin(id_producto,id,color,talla,cantidad,foto,precio);
+            }
+
+            Conexion.close(conec);
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return prod;
+    }
+
 
 }
