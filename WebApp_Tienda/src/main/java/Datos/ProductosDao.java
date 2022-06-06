@@ -142,4 +142,34 @@ public class ProductosDao {
 
     }
 
+    public ProductosBin listarId(int id)
+    {
+        ProductosBin prod=null;
+        String sql="Select * from productos where id_producto="+id;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(sql);
+            rs=st.executeQuery();
+            while (rs.next()){
+                int id_producto=rs.getInt("id_producto");
+                String nombre=rs.getString("nombre");
+                int categoria=rs.getInt("categoria");
+                String Descripcion=rs.getString("descripcion");
+                prod=new ProductosBin(id_producto,nombre,categoria,Descripcion);
+            }
+
+            Conexion.close(conec);
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return prod;
+    }
+
 }

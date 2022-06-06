@@ -1,6 +1,6 @@
 <%@ page import="Modelo.ColoresBin" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Iterator" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: edith
   Date: 26/05/2022
@@ -12,15 +12,33 @@
 <head>
     <title>Title</title>
     <link rel="icon" href="images/logo.jpg">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .izquierda{
 
+            height: 100vh;
+            width: 30%;
+            text-align: center;
+
+        }
+        .derecha{
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 70%;
+
+        }
+        #pantalla-dividida{
+            display: flex;
+        }
+    </style>
+    <link rel="stylesheet" href="Styles/Style.css">
+    <link rel="stylesheet" href="Styles/Botones.css">
 </head>
 <body>
-<div class="d-flex">
-    <div class="card col-sm-4">
-        <div >
+<section id="pantalla-dividida">
+    <div class="izquierda">
+        <fieldset>
             <form action="ServletColores?menu=Colores" method="get">
-                <div>
                     <label>Color</label>
                     <label>
 
@@ -30,28 +48,27 @@
 
 
                         %>
-                        <input type="text" name="nombre"  class="form-control">
+                        <input type="text" name="nombre"  class="">
 
                         <%
                         } else {
 
 
                         %>
-                        <input type="text" name="nombre" value="<%=valor.getNombre_color()%>"  class="form-control">
+                        <input type="text" name="nombre" value="<%=valor.getNombre_color()%>"  class=form-control">
 
                         <% }
                         %>
                     </label>
-
-                </div>
-
-                <input type="submit" name="accion"  value="Insertar" class="btn btn-info">
-                <input type="submit" name="accion"  value="Actualizar" class="btn btn-info" >
+                <br><br>
+                <input type="submit" name="accion"  value="Insertar" class="boton-3">
+                <input type="submit" name="accion"  value="Actualizar" class="boton-3" >
             </form>
-        </div>
+            <input type="button" value="Página anterior" onClick="history.go(-1);" class="boton-7">
+        </fieldset>
     </div>
-    <div class="col-sm-8">
-        <table class="table table-hover">
+    <div class="derecha">
+        <table class="">
             <thead>
             <tr>
                 <th>ID</th>
@@ -72,8 +89,8 @@
                 <td><%=list.getId_color() %></td>
                 <td><%=list.getNombre_color()%></td>
                 <td>
-                    <a class="btn btn-warning" href="ServletColores?menu=ServletColores&accion=Editar&id=<%=list.getId_color()%>">Editar </a>
-                    <a class="btn btn-warning" href="ServletColores?menu=ServletColores&accion=Eliminar&id=<%=list.getId_color()%>">Eliminar</a>
+                    <a class="boton-8" href="ServletColores?menu=ServletColores&accion=Editar&id=<%=list.getId_color()%>">Editar </a>
+                    <a class="boton-8" href="ServletColores?menu=ServletColores&accion=Eliminar&id=<%=list.getId_color()%>">Eliminar</a>
                 </td>
             </tr>
             <%
@@ -89,7 +106,7 @@
         </table>
     </div>
 
-</div>
+</section>
 
 </body>
 </html>

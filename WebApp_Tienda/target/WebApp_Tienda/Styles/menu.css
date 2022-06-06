@@ -1,34 +1,47 @@
 *{
-    margin: 0;
+    margin:0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: BlinkMacSystemFont, sans-serif;
 }
-header{
-    font-family: Helvetica;
-    width: 480px;
-    margin: 0 auto;
+
+nav{
+    max-width: 100%;
+    background-color: coral;
+    font-size: 100%;
+    margin: 50px auto auto;
 }
-ul{
+.menu-horizontal{
     list-style: none;
+    display: flex;
+    justify-content: space-around;
 }
-#menu li>a{
-    background-color: grey;
-    color: white;
-    padding: 10px;
+.menu-horizontal >li >a{
     display: block;
+    padding: 20px 30px;
+    color: white;
     text-decoration: none;
-    min-width: 100px;
 }
-#menu li>a:hover{
-    color: #000;
-    background-color: #eaeaea;
+.menu-horizontal >li:hover{
+    background-color: lightcoral;
 }
-#menu>li{
-    float: left;
-    text-align:center
-}
-#menu>li>ul{
+.menu-vertical{
+    position: absolute;
     display: none;
+    list-style: none;
+    width: 200px;
+    background-color: coral;
 }
-#menu>li:hover>ul {
-    display:block;
+.menu-horizontal li:hover .menu-vertical{
+    display: block;
+}
+.menu-vertical li:hover{
+    background-color: lightcoral;
+}
+.menu-vertical li a{
+    display: block;
+    color: white;
+    padding: 15px 15px;
+    text-decoration: none;
+
 }

@@ -19,49 +19,72 @@ public class ControladorValidar extends HttpServlet {
     ClientesBin clientesBin=new ClientesBin();
     ClientesDao clientesDao=new ClientesDao();
     int empleado, cliente;
+    String user;
+    String password;
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("Entro al get");
+        String imagen="images/login.jsp";
+        request.setAttribute("img",imagen);
+        request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("Entro al post");
         String accion=request.getParameter("accion");
-        if(accion.equalsIgnoreCase("ingresar"))
-        {
-            String user= request.getParameter("user");
-            String password=request.getParameter("password");
+        switch (accion){
+            case "ingresar":
+                user= request.getParameter("user");
+                password=request.getParameter("password");
 
-            empleadosBin=empleadosDao.validar(user,password);
-            if(empleadosBin!=null)
-                cliente=0;
-            else
-                cliente=1;
-            clientesBin=clientesDao.validar(user,password);
-            if(clientesBin!=null)
-                empleado=0;
-            else
-                empleado=1;
+                empleadosBin=empleadosDao.validar(user,password);
+                if(empleadosBin!=null) {
+                    empleado = 0;
+                }
+                else
+                    empleado=1;
+                clientesBin=clientesDao.validar(user,password);
+                if(clientesBin!=null) {
+                    cliente = 0;
+                }
+                else
+                    cliente=1;
 
-            if(cliente==0)
-            {
-                request.getRequestDispatcher("views/Cliente.jsp").forward(request,response);
-                System.out.println("Entro a clientes");
-            }
-            else if (empleado==0) {
-                System.out.println("Entro a empleado");
-                request.getRequestDispatcher("Controlador?menu=Categorias&accion=listar").forward(request, response);
-            }
-            else
-                System.out.println("Ninguno");
-           // request.getRequestDispatcher("index.jsp").forward(request,response);
+                if(cliente==0)
+                {
+                    request.getRequestDispatcher("ServletPrincipal?menu=index?accion=home").forward(request,response);
+                }
+                else if (empleado==0) {
+                    request.setAttribute("empleado",empleadosBin);
+                    System.out.println("Lo mando a listar productos" +empleadosBin.getNombre());
+                    request.getRequestDispatcher("views/IndexEmpleado.jsp").forward(request, response);
+                }
+                else {
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
+                break;
 
-        }
-        else {
-            request.getRequestDispatcher("index.jsp").forward(request,response);
-            System.out.println("Inicio");
+            case "Registrar":
+                user= request.getParameter("user");
+                password=request.getParameter("password");
+                clientesBin=clientesDao.validar(user,password);
+                if(clientesBin!=null)
+                {
+                    request.getRequestDispatcher("views/Login.jsp").forward(request,response);
+                }
+                else{
+                    request.setAttribute("user",user);
+                    request.setAttribute("password",password);
+                    request.getRequestDispatcher("views/Cliente.jsp").forward(request,response);
 
+                    }
+                break;
+            default:
+                request.getRequestDispatcher("index.jsp").forward(request,response);
         }
 
     }

@@ -16,7 +16,7 @@
         <a style="margin-left: 10px; border: none;" class="btn btn-outline-ligth" href="#">HOME</a>
     </li>
     <li class="nav var-item">
-        <a style="margin-left: 10px; border: none;" class="btn btn-outline-ligth" href="Controlador?menu=Producto">Productos</a>
+        <a style="margin-left: 10px; border: none;" class="btn btn-outline-ligth" href="../Productos?menu=Productos&accion=listar">Productos</a>
     </li>
     <li class="nav var-item">
         <a style="margin-left: 10px; border: none;" class="btn btn-outline-ligth" href="Controlador?menu=Empleado">Empleados</a>
@@ -35,9 +35,6 @@
     </li>
     <li class="nav var-item">
         <a style="margin-left: 10px; border: none;" class="btn btn-outline-ligth" href="../ServletTipo_Empleados?menu=Tipo_Empleados&accion=listar">Tipo_empleados</a>
-    </li>
-    <li class="nav var-item">
-        <a style="margin-left: 10px; border: none;"  class="btn btn-outline-ligth" href="../Controlador?menu=Imagen&accion=Listar" >imagen</a>
     </li>
     <li class="nav var-item">
         <a style="margin-left: 10px; border: none;" class="btn btn-outline-ligth" href="Login.jsp">Iniciar Sesion</a>

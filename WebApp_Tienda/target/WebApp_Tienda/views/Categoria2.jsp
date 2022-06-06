@@ -8,47 +8,57 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+
 <html>
 <head>
     <title>Categorias</title>
+    <link rel="stylesheet" href="Styles/Style.css">
 </head>
 <body>
-<div class="d-flex">
-    <div class="card col-sm-4">
-        <div >
-            <form action="Controlador?menu=Categorias" method="GET">
-                <div>
-                    <label>Nombre</label>
-                    <label>
+<section id="pantalla-dividida">
 
-                        <%
-                            CategoriaBin valor= (CategoriaBin) request.getAttribute("categoriase");
-                            if (valor == null) {
+        <div class="izquierda">
+            <fieldset >
+            <div >
+                <form action="Controlador?menu=Categorias" method="GET">
+                    <div>
+                        <br>
+                        <label>Nombre</label>
+                        <label>
 
-
-                                %>
-                        <input type="text" name="nombre"  class="form-control" maxlength="30">
-
-                         <%
-                        } else {
+                            <%
+                                CategoriaBin valor= (CategoriaBin) request.getAttribute("categoriase");
+                                if (valor == null) {
 
 
-                    %>
-                    <input type="text" name="nombre" value="<%=valor.getNombre_categoria()%>"  class="form-control">
+                            %>
+                            <input type="text" name="nombre"  class="" maxlength="30">
 
-                    <% }
-                        %>
-                    </label>
+                            <%
+                            } else {
 
-                </div>
 
-                <input type="submit" name="accion"  value="Insertar" class="btn btn-info">
-                <input type="submit" name="accion"  value="Actualizar" class="btn btn-info" >
-            </form>
+                            %>
+                            <input type="text" name="nombre" value="<%=valor.getNombre_categoria()%>"  class="">
+
+                            <% }
+                            %>
+                        </label>
+
+                    </div>
+                    <br>
+
+                    <input type="submit" name="accion"  value="Insertar" class="boton-3">
+                    <input type="submit" name="accion"  value="Actualizar" class="boton-3" >
+                </form>
+                <a href="ServletPrincipal?accion=home"><input type="submit" name="accion"  value="Regresar al inicio" class="boton-4"></a>
+
+            </div>
+    </fieldset>
         </div>
-    </div>
-    <div class="col-sm-8">
-        <table class="table table-hover">
+
+    <div class="derecha">
+        <table class="">
             <thead>
             <tr>
                 <th>ID</th>
@@ -65,14 +75,14 @@
                     {
             %>
 
-                <tr>
-                    <td><%=list.getId_categoria() %></td>
-                    <td><%=list.getNombre_categoria()%></td>
-                    <td>
-                        <a class="btn btn-warning" href="Controlador?menu=Categorias&accion=Editar&id=<%=list.getId_categoria()%>">Editar </a>
-                        <a class="btn btn-warning" href="Controlador?menu=Categorias&accion=Eliminar&id=<%=list.getId_categoria()%>">Eliminar</a>
-                    </td>
-                </tr>
+            <tr>
+                <td><%=list.getId_categoria() %></td>
+                <td><%=list.getNombre_categoria()%></td>
+                <td>
+                    <a class="boton-5" href="Controlador?menu=Categorias&accion=Editar&id=<%=list.getId_categoria()%>">Editar </a>
+                    <a class="boton-5" href="Controlador?menu=Categorias&accion=Eliminar&id=<%=list.getId_categoria()%>">Eliminar</a>
+                </td>
+            </tr>
             <%
                 }
             }
@@ -86,6 +96,6 @@
         </table>
     </div>
 
-</div>
+</section>
 </body>
 </html>

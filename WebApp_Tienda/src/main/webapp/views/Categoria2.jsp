@@ -8,47 +8,73 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+
 <html>
 <head>
     <title>Categorias</title>
+    <style>
+        .izquierda{
+
+            height: 100vh;
+            width: 30%;
+            text-align: center;
+
+        }
+        .derecha{
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 70%;
+
+        }
+        #pantalla-dividida{
+            display: flex;
+        }
+    </style>
+    <link rel="stylesheet" href="Styles/Style.css">
+    <link rel="stylesheet" href="Styles/Botones.css">
 </head>
 <body>
-<div class="d-flex">
-    <div class="card col-sm-4">
-        <div >
-            <form action="Controlador?menu=Categorias" method="GET">
-                <div>
-                    <label>Nombre</label>
-                    <label>
+<section id="pantalla-dividida">
 
-                        <%
-                            CategoriaBin valor= (CategoriaBin) request.getAttribute("categoriase");
-                            if (valor == null) {
+        <div class="izquierda">
+            <fieldset >
 
+                <form action="Controlador?menu=Categorias" method="GET">
+                        <br>
+                        <label>Nombre</label>
+                        <label>
 
-                                %>
-                        <input type="text" name="nombre"  class="form-control" maxlength="30">
-
-                         <%
-                        } else {
+                            <%
+                                CategoriaBin valor= (CategoriaBin) request.getAttribute("categoriase");
+                                if (valor == null) {
 
 
-                    %>
-                    <input type="text" name="nombre" value="<%=valor.getNombre_categoria()%>"  class="form-control">
+                            %>
+                            <input type="text" name="nombre"  class="" maxlength="30">
 
-                    <% }
-                        %>
-                    </label>
+                            <%
+                            } else {
 
-                </div>
 
-                <input type="submit" name="accion"  value="Insertar" class="btn btn-info">
-                <input type="submit" name="accion"  value="Actualizar" class="btn btn-info" >
-            </form>
+                            %>
+                            <input type="text" name="nombre" value="<%=valor.getNombre_categoria()%>"  class="">
+
+                            <% }
+                            %>
+                        </label>
+                    <br>
+                    <br>
+                    <input type="submit" name="accion"  value="Insertar" class="boton-3">
+                    <input type="submit" name="accion"  value="Actualizar" class="boton-3" >
+                </form>
+                <input type="button" value="Página anterior" onClick="history.go(-1); " class="boton-7">
+
+    </fieldset>
         </div>
-    </div>
-    <div class="col-sm-8">
-        <table class="table table-hover">
+
+    <div class="derecha">
+        <table >
             <thead>
             <tr>
                 <th>ID</th>
@@ -65,14 +91,14 @@
                     {
             %>
 
-                <tr>
-                    <td><%=list.getId_categoria() %></td>
-                    <td><%=list.getNombre_categoria()%></td>
-                    <td>
-                        <a class="btn btn-warning" href="Controlador?menu=Categorias&accion=Editar&id=<%=list.getId_categoria()%>">Editar </a>
-                        <a class="btn btn-warning" href="Controlador?menu=Categorias&accion=Eliminar&id=<%=list.getId_categoria()%>">Eliminar</a>
-                    </td>
-                </tr>
+            <tr>
+                <td><%=list.getId_categoria() %></td>
+                <td><%=list.getNombre_categoria()%></td>
+                <td>
+                    <a class="boton-8" href="Controlador?menu=Categorias&accion=Editar&id=<%=list.getId_categoria()%>">Editar </a>
+                    <a class="boton-8" href="Controlador?menu=Categorias&accion=Eliminar&id=<%=list.getId_categoria()%>">Eliminar</a>
+                </td>
+            </tr>
             <%
                 }
             }
@@ -86,7 +112,6 @@
         </table>
     </div>
 
-</div>
-
+</section>
 </body>
 </html>

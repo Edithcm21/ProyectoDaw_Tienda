@@ -11,9 +11,9 @@ public class ClientesDao {
 
 
     public static final String select = "Select * from clientes order by id_cliente";
-    public static final String insert="insert into clientes(nombre,apellidos,colonia,ciudad,calle,avenida,estado,telefono) values (?,?,?,?,?,?,?,?)";
+    public static final String insert="insert into clientes(nombre,apellidos,colonia,ciudad,calle,avenida,estado,telefono,usu,pass) values (?,?,?,?,?,?,?,?,?,?)";
     public static final String delete="delete from clientes where id_cliente=?";
-    public static final String modificar="Update clientes set nombre=?, apellidos=?, colonia=?,ciudad=?,calle=?,avenida=?,estado=?, telefono=? where id_cliente=?";
+    public static final String modificar="Update clientes set nombre=?, apellidos=?, colonia=?,ciudad=?,calle=?,avenida=?,estado=?, telefono=?,usu=?,pass=? where id_cliente=?";
     public static final String validar="select * from clientes where usu=? and pass=?";
 
     //validar
@@ -119,6 +119,8 @@ public class ClientesDao {
             st.setString(6,cliente.getAvenida());
             st.setString(7,cliente.getEstado());
             st.setString(8,cliente.getTelefono());
+            st.setString(9,cliente.getUser());
+            st.setString(10,cliente.getPassword());
 
             if (st.executeUpdate()==1)
                 System.out.println("Registro Exitoso");
@@ -150,7 +152,9 @@ public class ClientesDao {
             st.setString(6,cliente.getAvenida());
             st.setString(7,cliente.getEstado());
             st.setString(8,cliente.getTelefono());
-            st.setInt(9,cliente.getId_cliente());
+            st.setString(9,cliente.getUser());
+            st.setString(10,cliente.getPassword());
+            st.setInt(11,cliente.getId_cliente());
 
             if(st.executeUpdate()==1)
                 System.out.println("Registro Actualizado");

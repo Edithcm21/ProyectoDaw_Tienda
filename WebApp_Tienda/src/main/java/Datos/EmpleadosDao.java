@@ -21,7 +21,7 @@ public class EmpleadosDao {
     public EmpleadosBin validar(String user, String password)  {
         PreparedStatement st ;
         ResultSet rs ;
-        EmpleadosBin usuario=new EmpleadosBin();
+        EmpleadosBin usuario=null;
 
         try {
             Connection con = Conexion.getConexion();
@@ -37,6 +37,7 @@ public class EmpleadosDao {
                 String apellido=rs.getString("apellidos");
                 String u=rs.getString("usu");
                 String pass=rs.getString("pass");
+                System.out.println(id+nombre+apellido+pass+u);
                 usuario=new EmpleadosBin(id,nombre,apellido,u,password);
 
             }

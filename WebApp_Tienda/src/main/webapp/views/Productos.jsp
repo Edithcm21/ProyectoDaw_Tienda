@@ -15,13 +15,32 @@
 <head>
     <title>Productos</title>
     <link rel="icon" href="images/logo.jpg">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        .izquierda{
 
+            height: 100vh;
+            width: 30%;
+            text-align: center;
+
+        }
+        .derecha{
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 70%;
+
+        }
+        #pantalla-dividida{
+            display: flex;
+        }
+    </style>
+    <link rel="stylesheet" href="Styles/Style.css">
+    <link rel="stylesheet" href="Styles/Botones.css">
 </head>
 <body >
-<div class="d-flex">
-    <div class="card col-sm-4">
-        <div >
+<div id="pantalla-dividida">
+    <div class="izquierda">
+        <fieldset >
             <form action="Productos?menu=Productos" method="get" enctype="multipart/form-data">
                 <div>
                     <label for="pr">Id_producto(Referenciado)</label>
@@ -33,7 +52,7 @@
                                 {
                                     for (ProductosBin pp:p ) {
                                     %>
-                                    <option value="<%=pp.getId_producto()%>"selected><%=pp.getNombre()%></option>
+                                    <option selected value="<%=pp.getId_producto()%>"><%=pp.getNombre()%></option>
                                 <%
                                     }
                                 }
@@ -61,7 +80,7 @@
                                     <% }%>
                                 </select>
                     <br><br>
-                            <label>Talla</label>
+                            <label for="talla">Talla</label>
                             <select id="Talla" name="talla" required>
                                 <% //Llenar seleccion de colores
                                 List<TallasBin> tallas=(List<TallasBin>) request.getAttribute("tallas");
@@ -86,29 +105,30 @@
 
 
                         %>
-                            <p><label>Cantidad</label><input type="text" name="cantidad"  class="form-control"></p>
-                            <p><label>Precio</label><input type="text"  name="precio"  class="form-control"></p>
-                            <p><label>foto</label><input type="file" name="foto" class="form-control"></p>
+                            <p><label>Cantidad</label><input type="text" name="cantidad"  class=""></p>
+                            <p><label>Precio</label><input type="text"  name="precio"  class=""></p>
+                            <p><label>foto</label><input type="file" name="foto" class=""></p>
                         <%
                         }
 
                           else {
                         %>
-                            <p><label>Cantidad</label><input type="text" name="cantidad" value="<%=valor.getCantidad()%>"  class="form-control"></p>
-                            <p><label>Precio</label><input type="text"  name="precio" value="<%=valor.getPrecio()%>"  class="form-control"></p>
-                            <p><label>foto</label><input type="file" name="foto" value="<%=valor.getFoto()%>" class="form-control"></p>
+                            <p><label>Cantidad</label><input type="text" name="cantidad" value="<%=valor.getCantidad()%>"  class=""></p>
+                            <p><label>Precio</label><input type="text"  name="precio" value="<%=valor.getPrecio()%>"  class=""></p>
+                            <p><label>foto</label><input type="file" name="foto" value="<%=valor.getFoto()%>" class=""></p>
                         <% }
                         %>
 
                 </div>
 
-                <input type="submit" name="accion"  value="Insertar" class="btn btn-info">
-                <input type="submit" name="accion"  value="Actualizar" class="btn btn-info" >
+                <input type="submit" name="accion"  value="Insertar" class="boton-3">
+                <input type="submit" name="accion"  value="Actualizar" class="boton-3" >
             </form>
-        </div>
+            <input type="button" value="Página anterior" onClick="history.go(-1);" class="boton-7">
+        </fieldset>
     </div>
 
-    <div class="col-sm-8">
+    <div class="derecha">
         <table class="table table-hover">
             <thead>
             <tr>
@@ -140,8 +160,8 @@
                 <td><img src="images/<%=list.getFoto()%>" alt="50" width="50" height="50"></td>
                 <td><%=list.getPrecio()%></td>
                 <td>
-                    <a class="btn btn-warning" href="Productos?menu=Productos&accion=Editar&id_alterno=<%=list.getId_alterno()%>">Editar </a>
-                    <a class="btn btn-warning" href="Productos?menu=Productos&accion=Eliminar&id_alterno=<%=list.getId_alterno()%>">Eliminar</a>
+                    <a class="boton-8" href="Productos?menu=Productos&accion=Editar&id_alterno=<%=list.getId_alterno()%>">Editar </a>
+                    <a class="boton-8" href="Productos?menu=Productos&accion=Eliminar&id_alterno=<%=list.getId_alterno()%>">Eliminar</a>
                 </td>
             </tr>
             <%

@@ -15,6 +15,7 @@ Datos\DetallesVentasDao.class
 Modelo\ClientesBin.class
 Datos\TallasDao.class
 Controlador\ServletPrincipal.class
+Controlador\ServletProductoPrincipal.class
 Datos\PedidosDao.class
 Datos\TipoEmpleadoDao.class
 Modelo\VentaFinalBin.class
