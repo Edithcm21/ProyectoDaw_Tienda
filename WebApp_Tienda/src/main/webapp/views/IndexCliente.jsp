@@ -1,8 +1,15 @@
-<%@ page import="java.util.List" %>
+<%@ page import="Modelo.ClientesBin" %>
 <%@ page import="Datos.CategoriaDao" %>
 <%@ page import="Modelo.CategoriaBin" %>
-<%@ page import="Modelo.ProductosColorTallaBin" %>
-<%@page pageEncoding="utf-8" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Modelo.ProductosColorTallaBin" %><%--
+  Created by IntelliJ IDEA.
+  User: edith
+  Date: 07/06/2022
+  Time: 04:42 p. m.
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Luyed</title>
@@ -31,32 +38,16 @@
         fieldset{
             width: 50vh;
         }
-        .marqui{
-            font-family: BlinkMacSystemFont, sans-serif;
-            color: lightcoral;
-            size: 35px;
-            height: 55px;
-
-
-        }
-        .padre {
-            background-color: #fafafa;
-            margin: 1rem;
-            padding: 1rem;
-            border: 2px solid #ccc;
-            text-align: center;
-        }
-
-
-
     </STYLE>
 </head>
 <body>
-<marquee behavior="ALTERNATE" class="marqui" ><br><b>ENVÍOS GRATIS A PARTIR DE $899 PESOS A TODA LA REPÚBLICA MEXICANA </b></marquee>
 <nav >
     <ul class="menu-horizontal">
         <li>
-            <a href="ServletPrincipal?accion=home&id=0">Productos</a>
+            <%
+                ClientesBin cliente= (ClientesBin) request.getAttribute("cliente");
+            %>
+            <a href="ServletPrincipal?accion=cliente&id=0&user=<%=cliente.getUser()%>&pass=<%=cliente.getPassword()%>">Productos</a>
             <ul class="menu-vertical">
                 <%
                     CategoriaDao dao=new CategoriaDao();
@@ -65,7 +56,7 @@
                     {
                         for (CategoriaBin r:lista) {
                 %>
-                <li><a href="ServletPrincipal?accion=home&id=<%=r.getId_categoria()%>"><%=r.getNombre_categoria()%></a></li>
+                <li><a href="ServletPrincipal?accion=cliente&id=<%=r.getId_categoria()%>&user=<%=cliente.getUser()%>&pass=<%=cliente.getPassword()%>"><%=r.getNombre_categoria()%></a></li>
                 <%
                         }
                     }
@@ -77,12 +68,14 @@
         <li><a >              </a></li>
         <li><a >              </a></li>
         <li><a >Tejiendo con el corazon </a></li>
-        <li><a >              </a></li>
-        <li><a href="views/Login.jsp" methods="post">Acceder
-          </a>
 
 
-        <li><a href="#">Carrito</a></li>
+        <li><a><%=cliente.getNombre()%> <%=cliente.getApellido()%></a>
+        <ul class="menu-vertical">
+            <li><a href="index.jsp">Cerrar Sesion</a></li>
+        </ul>
+        </li>
+        <li><a href="#">Ventas</a></li>
 
     </ul>
 </nav>
@@ -123,22 +116,10 @@
     <%
             }
         }
-            else{
+        else{
     %>
 </div>
-
-<img src="images/portada.jpg" width="100%" height="80%" alt="">
-<div class="padre">
-    <img src="images/ACCESORIOS.jpg" width="30%" height="30%" alt="">
-    <img src="images/AMIGURUMIS-1.jpg" width="30%" height="30%" alt="">
-    <img src="images/BEBE003-1.jpg" width="30%" height="30%" alt="">
-</div>
-<div class="padre">
-    <img src="images/DECO3-2.jpg" width="30%" height="30%" alt="">
-    <img src="images/MODA.jpg" width="30%" height="30%" alt="">
-    <img src="images/AMIGURUMIS-1.jpg" width="30%" height="30%" alt="">
-</div>
-<% }%>
-
+<img src="images/imagenfondoempleado.jpg" alt="" width="100%" height="757">
+<%}%>
 </body>
 </html>

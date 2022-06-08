@@ -29,7 +29,6 @@ public class ControladorValidar extends HttpServlet {
         request.setAttribute("img",imagen);
         request.getRequestDispatcher("views/Login.jsp").forward(request, response);
 
-
     }
 
     @Override
@@ -56,7 +55,8 @@ public class ControladorValidar extends HttpServlet {
 
                 if(cliente==0)
                 {
-                    request.getRequestDispatcher("ServletPrincipal?menu=index?accion=home").forward(request,response);
+                    request.setAttribute("cliente",clientesBin);
+                    request.getRequestDispatcher("views/IndexCliente.jsp").forward(request,response);
                 }
                 else if (empleado==0) {
                     request.setAttribute("empleado",empleadosBin);
@@ -64,7 +64,7 @@ public class ControladorValidar extends HttpServlet {
                     request.getRequestDispatcher("views/IndexEmpleado.jsp").forward(request, response);
                 }
                 else {
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    request.getRequestDispatcher("views/Login.jsp").forward(request, response);
                 }
                 break;
 
@@ -74,15 +74,40 @@ public class ControladorValidar extends HttpServlet {
                 clientesBin=clientesDao.validar(user,password);
                 if(clientesBin!=null)
                 {
-                    request.getRequestDispatcher("views/Login.jsp").forward(request,response);
+                    request.setAttribute("cliente",clientesBin);
+                    request.getRequestDispatcher("views/IndexCliente.jsp").forward(request,response);
                 }
                 else{
-                    request.setAttribute("user",user);
-                    request.setAttribute("password",password);
+                    ClientesBin usu=new ClientesBin();
+                    usu.setPassword(password);
+                    usu.setUser(user);
+                    request.setAttribute("usu",usu);
                     request.getRequestDispatcher("views/Cliente.jsp").forward(request,response);
 
                     }
                 break;
+            case "Guardar":
+                String nombre=request.getParameter("nombre");
+                String apellidos=request.getParameter("apellidos");
+                String colonia=request.getParameter("colonia");
+                String ciudad=request.getParameter("ciudad");
+                String calle=request.getParameter("calle");
+                String avenida=request.getParameter("avenida");
+                String estado=request.getParameter("estado");
+                String correo=request.getParameter("correo");
+                String pass=request.getParameter("password");
+                String tel=request.getParameter("telefono");
+                System.out.println();
+                clientesBin=new ClientesBin(nombre,apellidos,colonia,ciudad,calle,avenida,estado,tel,correo,pass);
+                if(clientesDao.insertar(clientesBin)==1)
+                {
+                    request.setAttribute("cliente",clientesBin);
+                    request.getRequestDispatcher("views/IndexCliente.jsp").forward(request,response);
+                }
+                else
+                request.getRequestDispatcher("views/Login.jsp").forward(request,response);
+                break;
+
             default:
                 request.getRequestDispatcher("index.jsp").forward(request,response);
         }

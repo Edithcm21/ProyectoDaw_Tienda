@@ -58,8 +58,8 @@
                     <p><label>Descripcion</label><input type="text"  name="Descripcion" value="<%=valor.getDescripcion()%>"  class=""></p>
                     <%}
                     %>
-                    <label for="categoria">Categoria</label>
-                    <select id="categoria" name="Categoria" required>
+                    <label for="Categoria">Categoria</label>
+                    <select id="Categoria" name="Categoria" required>
                         <% //Llenar seleccion de categorias
                             List<CategoriaBin> categoria=(List<CategoriaBin>) request.getAttribute("categorias");
                             if(categoria!=null)
@@ -108,9 +108,9 @@
                 <td><%=list.getCategoria()%></td>
                 <td><%=list.getDescripcion()%></td>
                 <td>
-                    <a class="boton-8" href="Productos?menu=Productos&accion=Editar&id=<%=list.getId_producto()%>">Editar </a>
+                    <a class="boton-8" href="ServletProductoPrincipal?menu=Productos&accion=Editar&id=<%=list.getId_producto()%>">Editar </a>
                     <br><br>
-                    <a class="boton-8" href="Productos?menu=Productos&accion=Eliminar&id=<%=list.getId_producto()%>">Eliminar</a>
+                    <a class="boton-8" href="ServletProductoPrincipal?menu=Productos&accion=Eliminar&id=<%=list.getId_producto()%>">Eliminar</a>
                 </td>
             </tr>
             <%

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="Modelo.ClientesBin" %><%--
   Created by IntelliJ IDEA.
   User: edith
   Date: 23/05/2022
@@ -13,7 +13,7 @@
 <body>
 <h1>Clientes</h1>
 <div>
-    <form action="Controlador?menu=Categorias" method="GET">
+    <form action="ControladorValidar?menu=Categorias" method="post">
         <div>
             <br>
             <label>Nombre</label>
@@ -38,17 +38,20 @@
             <label><input type="text" name="estado"  class="" maxlength="30" required></label>
             <br>
             <label>Correo</label>
-            <label><input type="text" name="correo" value="<%String user = (String) request.getAttribute("user");%>" class="" maxlength="30" required></label>
+            <%
+                ClientesBin cliente= (ClientesBin) request.getAttribute("usu");
+            %>
+            <label><input type="text" name="correo" value="<%=cliente.getUser()%>" class="" maxlength="30" required></label>
             <br>
 
             <label>password</label>
-            <label><input type="text" name="password" value="<%String pas= (String) request.getAttribute("password");%>" class="" maxlength="30" required></label>
+            <label><input type="text" name="password" value="<%=cliente.getPassword()%>" class="" maxlength="30" required></label>
             <br>
             <label>Telefono</label>
             <label><input type="text" name="telefono"  class="" maxlength="30" required></label>
         </div>
         <br>
-        <input type="submit" name="accion"  value="Guardar Registro" class="boton-3">
+        <input type="submit" name="accion"  value="Guardar" class="boton-3">
     </form>
     <a href="index.jsp"><input type="submit"  value="Regresar al inicio" class="boton-3" ></a>
 </div>

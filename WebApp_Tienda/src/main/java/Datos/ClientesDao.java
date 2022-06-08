@@ -102,7 +102,7 @@ public class ClientesDao {
     }
 
     //insertar
-    public void insertar(ClientesBin cliente) {
+    public int insertar(ClientesBin cliente) {
 
         Connection con;
         PreparedStatement st;
@@ -122,14 +122,16 @@ public class ClientesDao {
             st.setString(9,cliente.getUser());
             st.setString(10,cliente.getPassword());
 
-            if (st.executeUpdate()==1)
+            if (st.executeUpdate()==1) {
                 System.out.println("Registro Exitoso");
-
+                return 1;
+            }
             Conexion.close(con);
             Conexion.close(st);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return 0;
     }
 
     //modificar

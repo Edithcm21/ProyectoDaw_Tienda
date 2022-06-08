@@ -10,6 +10,7 @@ public class ProductosColorTallaBin implements Serializable {
     private int cantidad;
     private String foto;
     private int precio;
+    private int categoria;
 
     public ProductosColorTallaBin(){ }
 
@@ -34,19 +35,20 @@ public class ProductosColorTallaBin implements Serializable {
         this.cantidad = cantidad;
         this.foto = foto;
         this.precio=precio;
+
     }
 
     //Seleccionar index
 
-    public ProductosColorTallaBin(int id_producto, String nombre, String descripcion, int id_alterno, String foto, int precio) {
+    public ProductosColorTallaBin(int id_producto, String nombre, String descripcion, int id_alterno, String foto, int precio,int categoria) {
         this.id_producto = id_producto;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.id_alterno = id_alterno;
         this.foto = foto;
         this.precio = precio;
+        this.categoria=categoria;
     }
-
 
     // eliminar
 
@@ -108,19 +110,6 @@ public class ProductosColorTallaBin implements Serializable {
 
     public void setPrecio(int precio) {this.precio = precio;}
 
-    @Override
-    public String toString() {
-        return "ProductosColorTallaBin{" +
-                "id_producto=" + id_producto +
-                ", id_alterno=" + id_alterno +
-                ", color=" + color +
-                ", talla=" + talla +
-                ", cantidad=" + cantidad +
-                ", foto='" + foto + '\'' +
-                ", precio=" + precio +
-                '}';
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -136,4 +125,8 @@ public class ProductosColorTallaBin implements Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public int getCategoria() { return categoria; }
+
+    public void setCategoria(int categoria) { this.categoria = categoria; }
 }

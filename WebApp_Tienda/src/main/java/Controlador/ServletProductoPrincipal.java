@@ -46,7 +46,7 @@ public class ServletProductoPrincipal extends HttpServlet {
                 request.getRequestDispatcher("ServletProductoPrincipal?menu=Productos&accion=listar").forward(request,response);
                 break;
             case "Eliminar":
-                id_=Integer.parseInt(request.getParameter("id_alterno"));
+                id_=Integer.parseInt(request.getParameter("id"));
                 ProductosBin i=new ProductosBin(id_);
                 dao.borrar(i);
                 request.getRequestDispatcher("ServletProductoPrincipal?menu=Productos&accion=listar").forward(request,response);
@@ -55,9 +55,8 @@ public class ServletProductoPrincipal extends HttpServlet {
             case "Actualizar":
                 String nombre1=request.getParameter("Nombre");
                 String des=request.getParameter("Descripcion");
-                int c=Integer.parseInt("Categoria");
-                int id=Integer.parseInt("id");
-                ProductosBin n=new ProductosBin(id,nombre1,c,des);
+                int c=Integer.parseInt(request.getParameter("Categoria"));
+                ProductosBin n=new ProductosBin(id_,nombre1,c,des);
                 dao.Modificartotal(n);
                 request.getRequestDispatcher("ServletProductoPrincipal?menu=Productos&accion=listar").forward(request,response);
                 break;

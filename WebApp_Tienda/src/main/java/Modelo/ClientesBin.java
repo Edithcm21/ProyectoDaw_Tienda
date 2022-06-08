@@ -45,13 +45,13 @@ public class ClientesBin implements Serializable {
         this.calle = calle;
         this.avenida = avenida;
         this.estado = estado;
-        Telefono = telefono;
+        this.Telefono=telefono;
     }
 
     //Metodo para insertar
 
 
-    public ClientesBin(String nombre, String apellido, String colonia, String ciudad, String calle, String avenida, String estado, String telefono) {
+    public ClientesBin(String nombre, String apellido, String colonia, String ciudad, String calle, String avenida, String estado, String telefono, String correo,String pass) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.colonia = colonia;
@@ -59,7 +59,10 @@ public class ClientesBin implements Serializable {
         this.calle = calle;
         this.avenida = avenida;
         this.estado = estado;
-        Telefono = telefono;
+        this.Telefono = telefono;
+        this.user=correo;
+        this.password=pass;
+
     }
 
     // Metodo para borrar

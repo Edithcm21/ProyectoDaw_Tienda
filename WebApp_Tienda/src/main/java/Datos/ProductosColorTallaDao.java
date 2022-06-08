@@ -15,13 +15,11 @@ public class ProductosColorTallaDao {
     public static final String insert="insert into productos_tallacolor(id_producto,color,foto,talla,cantidad,precio) values (?,?,?,?,?,?)";
     public static final String delete="delete from productos_tallacolor where id_alternocolor=?";
     public static final String modificar="Update productos_tallacolor set id_producto=?,color=?,talla=?, cantidad=?,precio=?, foto=? where id_alternocolor=?";
-    public static final String joinprincipal="select id_alternocolor,productos.nombre,productos.id_producto,productos.descripcion,foto,precio from productos_tallacolor\n" +
-            "join productos\n" +
-            "on productos.id_producto=productos_tallacolor.id_producto";
+
 
     //Seleccionar
 
-    public List<ProductosColorTallaBin>Join1()
+    public List<ProductosColorTallaBin>Join1(String joinprincipal)
     {
         Statement st ;
         ResultSet rs ;
@@ -40,13 +38,13 @@ public class ProductosColorTallaDao {
                 int id_alterno=rs.getInt(1);
                 String nombre=rs.getString(2);
                 int id_producto=rs.getInt(3);
-                String descripcion=rs.getString(4);
-                String foto=rs.getString(5);
-                int precio=rs.getInt(6);
+                int categoria=rs.getInt(4);
+                String descripcion=rs.getString(5);
+                String foto=rs.getString(6);
+                int precio=rs.getInt(7);
 
 
-                producto=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio);
-                System.out.println(precio);
+                producto=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria);
                 productos.add(producto);
 
 
