@@ -40,7 +40,7 @@ public class ProductosColorTallaBin implements Serializable {
 
     //Seleccionar index
 
-    public ProductosColorTallaBin(int id_producto, String nombre, String descripcion, int id_alterno, String foto, int precio,int categoria) {
+    public ProductosColorTallaBin(int id_producto, String nombre, String descripcion, int id_alterno, String foto, int precio,int categoria, int cantidad) {
         this.id_producto = id_producto;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -48,6 +48,7 @@ public class ProductosColorTallaBin implements Serializable {
         this.foto = foto;
         this.precio = precio;
         this.categoria=categoria;
+        this.cantidad=cantidad;
     }
 
     // eliminar

@@ -5,6 +5,7 @@
   Time: 11:56 p. m.
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -45,7 +46,7 @@
             <br>
 
             <label>password</label>
-            <label><input type="text" name="password" value="<%=cliente.getPassword()%>" class="" maxlength="30" required></label>
+            <label><input type="password" name="password" value="<%=cliente.getPassword()%>" class="" maxlength="30" required></label>
             <br>
             <label>Telefono</label>
             <label><input type="text" name="telefono"  class="" maxlength="30" required></label>

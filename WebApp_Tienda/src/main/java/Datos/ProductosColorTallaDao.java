@@ -42,9 +42,10 @@ public class ProductosColorTallaDao {
                 String descripcion=rs.getString(5);
                 String foto=rs.getString(6);
                 int precio=rs.getInt(7);
+                int cantidad=rs.getInt(8);
 
 
-                producto=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria);
+                producto=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria,cantidad);
                 productos.add(producto);
 
 
@@ -222,6 +223,43 @@ public class ProductosColorTallaDao {
 
         return prod;
     }
+
+
+    public ProductosColorTallaBin listarId2(String join)
+    {
+        ProductosColorTallaBin prod=null;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(join);
+            rs=st.executeQuery();
+            while (rs.next()) {
+                int id_alterno=rs.getInt(1);
+                String nombre=rs.getString(2);
+                int id_producto=rs.getInt(3);
+                int categoria=rs.getInt(4);
+                String descripcion=rs.getString(5);
+                String foto=rs.getString(6);
+                int precio=rs.getInt(7);
+                int cantidad=rs.getInt(8);
+
+
+                prod=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria,cantidad);
+            }
+
+            Conexion.close(conec);
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return prod;
+    }
+
 
 
 }

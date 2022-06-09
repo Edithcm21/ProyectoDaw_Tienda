@@ -1,6 +1,7 @@
 package Datos;
 
 import Modelo.ClientesBin;
+import Modelo.ProductosColorTallaBin;
 
 
 import java.sql.*;
@@ -80,10 +81,8 @@ public class ClientesDao {
                 String Avenida=rs.getString("avenida");
                 String Estado=rs.getString("estado");
                 String Telefono= rs.getString("telefono");
-
                 cliente=new ClientesBin(Id_Cliente,Nombre,Apellido,Colonia,Ciudad,Calle,Avenida,Estado,Telefono);
                 clientes.add(cliente);
-
             }
 
 
@@ -200,6 +199,40 @@ public class ClientesDao {
         }
 
 
+    }
+    public ClientesBin listarId(int id)
+    {
+        ClientesBin cliente=null;
+        String sql="Select * from clientes where id_cliente="+id;
+        Connection conec;
+        PreparedStatement st;
+        ResultSet rs;
+        try{
+            conec=Conexion.getConexion();
+            assert conec != null;
+            st=conec.prepareStatement(sql);
+            rs=st.executeQuery();
+            while (rs.next()){
+                int Id_Cliente = rs.getInt("id_cliente");
+                String Nombre = rs.getString("nombre");
+                String Apellido=rs.getString("apellidos");
+                String Colonia =rs.getString("colonia");
+                String Ciudad=rs.getString("ciudad");
+                String Calle=rs.getString("calle");
+                String Avenida=rs.getString("avenida");
+                String Estado=rs.getString("estado");
+                String Telefono= rs.getString("telefono");
+                cliente=new ClientesBin(Id_Cliente,Nombre,Apellido,Colonia,Ciudad,Calle,Avenida,Estado,Telefono);
+            }
+
+            Conexion.close(conec);
+            st.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cliente;
     }
 
 

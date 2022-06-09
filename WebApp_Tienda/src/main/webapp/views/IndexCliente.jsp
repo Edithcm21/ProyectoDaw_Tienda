@@ -9,6 +9,7 @@
   Time: 04:42 p. m.
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -16,6 +17,7 @@
     <link rel="icon" href="images/logo.jpg">
     <link rel="stylesheet" href="Styles/Botones.css">
     <link rel="stylesheet" href="Styles/menu.css">
+    <link rel="stylesheet" href="Styles/Style.css">
 
     <STYLE>
         table {
@@ -47,16 +49,16 @@
             <%
                 ClientesBin cliente= (ClientesBin) request.getAttribute("cliente");
             %>
-            <a href="ServletPrincipal?accion=cliente&id=0&user=<%=cliente.getUser()%>&pass=<%=cliente.getPassword()%>">Productos</a>
+            <a href="ServletPrincipal?accion=cliente&id=0&id_cliente=<%=cliente.getId_cliente()%>">Productos</a>
             <ul class="menu-vertical">
                 <%
                     CategoriaDao dao=new CategoriaDao();
                     List<CategoriaBin> lista=dao.Select();
-                    if(lista!=null)
+                    if(lista.size()>0)
                     {
                         for (CategoriaBin r:lista) {
                 %>
-                <li><a href="ServletPrincipal?accion=cliente&id=<%=r.getId_categoria()%>&user=<%=cliente.getUser()%>&pass=<%=cliente.getPassword()%>"><%=r.getNombre_categoria()%></a></li>
+                <li><a href="ServletPrincipal?accion=cliente&id=<%=r.getId_categoria()%>&id_cliente=<%=cliente.getId_cliente()%>"><%=r.getNombre_categoria()%></a></li>
                 <%
                         }
                     }
@@ -75,7 +77,8 @@
             <li><a href="index.jsp">Cerrar Sesion</a></li>
         </ul>
         </li>
-        <li><a href="#">Ventas</a></li>
+        <li><a href="ServletPrincipal?accion=carrito">Carrito</a></li>
+
 
     </ul>
 </nav>
@@ -107,7 +110,7 @@
             </tr>
             <tr>
 
-                <td><a href="views/Login.jsp"><input type="submit"  class="boton-7" value="Agregar carrito"></a><a href="views/Login.jsp"><input type="submit" class="boton-7" value="Comprar"></a></td>
+                <td><a href="ServletPrincipal?accion=AgregarCarrito&idpa=<%=list.getId_alterno()%>"><input type="submit"  class="boton-7" value="Agregar carrito"></a></td>
             </tr>
         </table>
         <br>

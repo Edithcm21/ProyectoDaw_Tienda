@@ -26,6 +26,7 @@ Controlador\ServletCategorias.class
 Datos\EnviosDao.class
 Datos\ProductosDao.class
 Datos\Conexion.class
+Modelo\Carrito.class
 Modelo\ColoresBin.class
 Controlador\Productos.class
 Modelo\DetalleVentaBin.class

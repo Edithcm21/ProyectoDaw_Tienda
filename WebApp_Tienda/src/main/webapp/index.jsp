@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="Styles/Botones.css">
     <link rel="stylesheet" href="Styles/menu.css">
 
+
     <STYLE>
         table {
             width: 100%;
