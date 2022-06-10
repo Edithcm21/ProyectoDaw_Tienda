@@ -58,6 +58,11 @@ public class ServletPrincipal extends HttpServlet {
 
         System.out.println("entro al servlet principal");
         switch (accion){
+            case "cerrar":
+                listaCarrito.clear();
+                cliente=null;
+                request.getRequestDispatcher("index.jsp").forward(request,response);
+                break;
             case "home":
                 id=Integer.parseInt(request.getParameter("id"));
                 if(id==0)

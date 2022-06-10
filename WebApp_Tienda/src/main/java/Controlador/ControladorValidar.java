@@ -101,6 +101,7 @@ public class ControladorValidar extends HttpServlet {
                 clientesBin=new ClientesBin(nombre,apellidos,colonia,ciudad,calle,avenida,estado,tel,correo,pass);
                 if(clientesDao.insertar(clientesBin)==1)
                 {
+                    clientesBin=clientesDao.validar(correo,pass);
                     request.setAttribute("cliente",clientesBin);
                     request.getRequestDispatcher("views/IndexCliente.jsp").forward(request,response);
                 }

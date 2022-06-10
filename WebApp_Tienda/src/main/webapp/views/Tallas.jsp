@@ -1,5 +1,6 @@
 <%@ page import="Modelo.TallasBin" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%--
   Created by IntelliJ IDEA.
   User: edith
   Date: 26/05/2022

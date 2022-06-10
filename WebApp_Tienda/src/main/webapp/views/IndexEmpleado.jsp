@@ -43,16 +43,19 @@
 </head>
 <body>
 <nav >
+    <%
+        EmpleadosBin empleado= (EmpleadosBin) request.getAttribute("empleado");
+    %>
     <ul class="menu-horizontal">
         <li><a href="index.jsp">Cerrar Sesion</a></li>
 
         <li>
-            <a href="Productos?menu=Productos&accion=listar">Agregar productos</a>
+            <a href="Productos?menu=Productos&accion=listar&id_em=<%=empleado.getId_empleado()%>">Agregar productos</a>
             <ul class="menu-vertical">
-                <li><a href="Controlador?menu=Categorias&accion=listar">Agregar Categorias</a></li>
-                <li><a href="ServletTallas?menu=Tallas&accion=listar">Agregar tallas</a></li>
-                <li><a href="ServletColores?menu=Colores&accion=listar">Agregar colores</a></li>
-                <li><a href="ServletProductoPrincipal?menu=Productos&accion=listar">Agregar prod principal</a></li>
+                <li><a href="Controlador?menu=Categorias&accion=listar&id_em=<%=empleado.getId_empleado()%>">Agregar Categorias</a></li>
+                <li><a href="ServletTallas?menu=Tallas&accion=listar&id_em=<%=empleado.getId_empleado()%>">Agregar tallas</a></li>
+                <li><a href="ServletColores?menu=Colores&accion=listar&id_em=<%=empleado.getId_empleado()%>">Agregar colores</a></li>
+                <li><a href="ServletProductoPrincipal?menu=Productos&accion=listar&id_em=<%=empleado.getId_empleado()%>">Agregar prod principal</a></li>
             </ul>
         </li>
         <li><a >Tejiendo con el corazon </a></li>
@@ -62,9 +65,7 @@
                <li><a href="ServletTipo_Empleados?menu=Tipos&accion=listar">tipos de empleado</a></li>
             </ul>
         </li>
-        <%
-            EmpleadosBin empleado= (EmpleadosBin) request.getAttribute("empleado");
-            %>
+
         <li><a><%=empleado.getNombre()%> <%=empleado.getApellido()%></a></li>
         <li><a href="#">Ventas</a></li>
 

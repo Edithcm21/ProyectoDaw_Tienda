@@ -1,5 +1,6 @@
 <%@ page import="Modelo.TipoEmpleadoBin" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%--
   Created by IntelliJ IDEA.
   User: edith
   Date: 27/05/2022

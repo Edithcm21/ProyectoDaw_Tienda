@@ -17,8 +17,7 @@
     <link rel="icon" href="images/logo.jpg">
     <link rel="stylesheet" href="Styles/Botones.css">
     <link rel="stylesheet" href="Styles/menu.css">
-    <link rel="stylesheet" href="Styles/Style.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <STYLE>
         table {
@@ -70,12 +69,12 @@
 
         <li><a >              </a></li>
         <li><a >              </a></li>
-        <li><a >Tejiendo con el corazon </a></li>
+        <li><a href="#">Tejiendo con el corazon </a></li>
 
 
-        <li><a><%=cliente.getNombre()%> <%=cliente.getApellido()%></a>
+        <li><a href="#"><%=cliente.getNombre()%> <%=cliente.getApellido()%></a>
         <ul class="menu-vertical">
-            <li><a href="index.jsp">Cerrar Sesion</a></li>
+            <li><a href="ServletPrincipal?accion=cerrar&id=0">Cerrar Sesion</a></li>
         </ul>
         </li>
         <li><a href="ServletPrincipal?accion=carrito&id_cliente=<%=cliente.getId_cliente()%>">Carrito</a></li>
@@ -83,6 +82,7 @@
 
     </ul>
 </nav>
+
 <div class="container">
     <div class="row">
 
@@ -95,7 +95,7 @@
         %>
         <div class="col-sm-4">
 
-            <table >
+            <table class="table-active">
                 <tr>
                     <td><h4><%=list.getNombre()%></h4></td>
                 </tr>
@@ -119,6 +119,7 @@
             </table>
             <br>
         </div>
+
 
         <%
             }

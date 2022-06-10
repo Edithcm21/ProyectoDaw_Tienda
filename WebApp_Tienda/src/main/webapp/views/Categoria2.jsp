@@ -1,5 +1,6 @@
 <%@ page import="Modelo.CategoriaBin" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%--
   Created by IntelliJ IDEA.
   User: edith
   Date: 23/05/2022
@@ -35,6 +36,7 @@
     <link rel="stylesheet" href="Styles/Botones.css">
 </head>
 <body>
+
 <section id="pantalla-dividida">
 
         <div class="izquierda">
