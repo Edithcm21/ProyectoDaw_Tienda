@@ -9,6 +9,7 @@
     <link rel="icon" href="images/logo.jpg">
     <link rel="stylesheet" href="Styles/Botones.css">
     <link rel="stylesheet" href="Styles/menu.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 
     <STYLE>
@@ -77,7 +78,7 @@
 
         <li><a >              </a></li>
         <li><a >              </a></li>
-        <li><a >Tejiendo con el corazon </a></li>
+        <li><a href="#">Tejiendo con el corazon </a></li>
         <li><a >              </a></li>
         <li><a href="views/Login.jsp" methods="post">Acceder
           </a>
@@ -88,7 +89,8 @@
     </ul>
 </nav>
 
-<div >
+<div class="container">
+    <div class="row">
 
     <%
         List<ProductosColorTallaBin> productos=(List)request.getAttribute("productos");
@@ -97,7 +99,7 @@
             for(ProductosColorTallaBin list:productos)
             {
     %>
-    <div >
+    <div class="col-sm-4">
 
         <table >
             <tr>
@@ -108,7 +110,12 @@
                     <img src="images/<%=list.getFoto()%>" width="200" height="180" alt="">
                     <br>
                     $ <%=list.getPrecio()%>
+
                 </td>
+
+            </tr>
+            <tr>
+                <td> Talla <%=list.getTallan()%></td>
             </tr>
             <tr>
                 <td> <%=list.getDescripcion()%></td>
@@ -124,8 +131,8 @@
     <%
             }
         }
-            else{
     %>
+</div>
 </div>
 
 <img src="images/portada.jpg" width="100%" height="80%" alt="">
@@ -139,7 +146,7 @@
     <img src="images/MODA.jpg" width="30%" height="30%" alt="">
     <img src="images/AMIGURUMIS-1.jpg" width="30%" height="30%" alt="">
 </div>
-<% }%>
+
 
 </body>
 </html>

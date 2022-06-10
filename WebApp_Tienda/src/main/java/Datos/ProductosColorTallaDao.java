@@ -42,10 +42,10 @@ public class ProductosColorTallaDao {
                 String descripcion=rs.getString(5);
                 String foto=rs.getString(6);
                 int precio=rs.getInt(7);
-                int cantidad=rs.getInt(8);
+                String talla=rs.getString(8);
 
 
-                producto=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria,cantidad);
+                producto=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria,talla);
                 productos.add(producto);
 
 
@@ -244,10 +244,10 @@ public class ProductosColorTallaDao {
                 String descripcion=rs.getString(5);
                 String foto=rs.getString(6);
                 int precio=rs.getInt(7);
-                int cantidad=rs.getInt(8);
+                String talla=rs.getString(8);
 
 
-                prod=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria,cantidad);
+                prod=new ProductosColorTallaBin(id_producto,nombre,descripcion,id_alterno,foto,precio,categoria,talla);
             }
 
             Conexion.close(conec);

@@ -65,7 +65,7 @@
         <br>
         <input type="submit" name="accion" value="ingresar" class="boton-3">
     </form>
-    <a href="index.jsp"><input type="submit" value="Regresar" class="boton-7"></a>
+    <a href="../index.jsp"><input type="submit" value="Regresar" class="boton-7"></a>
 </fieldset>
     </div>
     <div class="derecha">

@@ -9,6 +9,7 @@ public class Carrito {
     int cantidad;
     int subtotal;
     String foto;
+    int total;
 
     public Carrito(){}
 
@@ -21,6 +22,9 @@ public class Carrito {
         this.cantidad = cantidad;
         this.subtotal = subtotal;
         this.foto=foto;
+    }
+    public Carrito(int total){
+        this.total=total;
     }
 
     public int getI() {
@@ -85,5 +89,13 @@ public class Carrito {
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }

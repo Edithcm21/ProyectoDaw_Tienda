@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DetallesVentasDao {
 
-    public static final String select = "Select * from detalle_ventas order by id_venta";
+    public static final String select = "Select * from detalle_venta order by id_venta";
     public static final String insert="insert into detalle_venta(id_cliente,id_empleado,fecha,hora,colonia,ciudad,calle,avenida,estado,total,estatus_pago) values (?,?,?,?,?,?,?,?,?,?,?)";
     public static final String delete="delete from detalle_venta where id_venta=?";
     public static final String modificarPago="Update detalle_venta set estatus_pago=? where id_venta=?";

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="Styles/menu.css">
     <link rel="stylesheet" href="Styles/Style.css">
 
+
     <STYLE>
         table {
             width: 100%;
@@ -77,51 +78,56 @@
             <li><a href="index.jsp">Cerrar Sesion</a></li>
         </ul>
         </li>
-        <li><a href="ServletPrincipal?accion=carrito">Carrito</a></li>
+        <li><a href="ServletPrincipal?accion=carrito&id_cliente=<%=cliente.getId_cliente()%>">Carrito</a></li>
 
 
     </ul>
 </nav>
+<div class="container">
+    <div class="row">
 
-<div >
-
-    <%
-        List<ProductosColorTallaBin> productos=(List)request.getAttribute("productos");
-        if(productos!=null)
-        {
-            for(ProductosColorTallaBin list:productos)
+        <%
+            List<ProductosColorTallaBin> productos=(List)request.getAttribute("productos");
+            if(productos!=null)
             {
-    %>
-    <div >
+                for(ProductosColorTallaBin list:productos)
+                {
+        %>
+        <div class="col-sm-4">
 
-        <table >
-            <tr>
-                <td><h4><%=list.getNombre()%></h4></td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="images/<%=list.getFoto()%>" width="200" height="180" alt="">
-                    <br>
-                    $ <%=list.getPrecio()%>
-                </td>
-            </tr>
-            <tr>
-                <td> <%=list.getDescripcion()%></td>
-            </tr>
-            <tr>
+            <table >
+                <tr>
+                    <td><h4><%=list.getNombre()%></h4></td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="images/<%=list.getFoto()%>" width="200" height="180" alt="">
+                        <br>
+                        $ <%=list.getPrecio()%>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <%=list.getDescripcion()%></td>
+                </tr>
+                <tr>
+                    <td> Talla <%=list.getTallan()%></td>
+                </tr>
+                <tr>
 
-                <td><a href="ServletPrincipal?accion=AgregarCarrito&idpa=<%=list.getId_alterno()%>"><input type="submit"  class="boton-7" value="Agregar carrito"></a></td>
-            </tr>
-        </table>
-        <br>
-    </div>
+                    <td><a href="ServletPrincipal?accion=AgregarCarrito&idpa=<%=list.getId_alterno()%>"><input type="submit"  class="boton-7" value="Agregar carrito"></a></td>
+                </tr>
+            </table>
+            <br>
+        </div>
 
-    <%
+        <%
             }
         }
         else{
-    %>
+        %>
+    </div>
 </div>
+
 <img src="images/imagenfondoempleado.jpg" alt="" width="100%" height="757">
 <%}%>
 </body>
