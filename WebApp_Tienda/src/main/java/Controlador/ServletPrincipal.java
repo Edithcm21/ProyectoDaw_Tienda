@@ -61,6 +61,7 @@ public class ServletPrincipal extends HttpServlet {
             case "cerrar":
                 listaCarrito.clear();
                 cliente=null;
+                System.out.println("Cerro sesion ");
                 request.getRequestDispatcher("index.jsp").forward(request,response);
                 break;
             case "home":
@@ -105,6 +106,8 @@ public class ServletPrincipal extends HttpServlet {
                 break;
             case "carrito":
                 total=0;
+                id_c=Integer.parseInt(request.getParameter("id_cliente"));
+                cliente=clientesDao.listarId(id_c);
                 request.setAttribute("cliente",cliente);
                 request.setAttribute("carrito",listaCarrito);
                 for (Carrito c:listaCarrito) {

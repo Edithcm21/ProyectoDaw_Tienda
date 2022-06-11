@@ -64,7 +64,7 @@
                 <input type="submit" name="accion"  value="Insertar" class="boton-3">
                 <input type="submit" name="accion"  value="Actualizar" class="boton-3" >
             </form>
-            <input type="button" value="Página anterior" onClick="history.go(-1);" class="boton-7">
+            <a href="../ControladorValidar?accion=regresar"><input type="button" value="Regresar a inicio"  class="boton-7"></a>
         </fieldset>
     </div>
     <div class="derecha">

@@ -25,10 +25,16 @@ public class ControladorValidar extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("Entro al get");
-        String imagen="images/login.jsp";
-        request.setAttribute("img",imagen);
-        request.getRequestDispatcher("views/Login.jsp").forward(request, response);
+        String accion=request.getParameter("accion");
+        switch (accion){
+            case "regresar":
+                request.setAttribute("empleado",empleadosBin);
+                System.out.println("Lo regreso a la pagina principal" +empleadosBin.getNombre());
+                request.getRequestDispatcher("views/IndexEmpleado.jsp").forward(request, response);
 
+                break;
+
+        }
     }
 
     @Override
@@ -108,6 +114,7 @@ public class ControladorValidar extends HttpServlet {
                 else
                 request.getRequestDispatcher("views/Login.jsp").forward(request,response);
                 break;
+
 
             default:
                 request.getRequestDispatcher("index.jsp").forward(request,response);

@@ -37,7 +37,7 @@
         <li><a href="#">Tejiendo con el corazon </a></li>
         <li><a href="#"><%=cliente.getNombre()%> <%=cliente.getApellido()%></a>
             <ul class="menu-vertical">
-                <li><a href="index.jsp">Cerrar Sesion</a></li>
+                <li><a href="ServletPrincipal?accion=cerrar&id=0">Cerrar Sesion</a></li>
             </ul>
         </li>
 
