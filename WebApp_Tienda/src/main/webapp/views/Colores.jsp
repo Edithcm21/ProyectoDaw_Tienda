@@ -64,7 +64,7 @@
                 <input type="submit" name="accion"  value="Insertar" class="boton-3">
                 <input type="submit" name="accion"  value="Actualizar" class="boton-3" >
             </form>
-            <a href="../ControladorValidar?accion=regresar"><input type="button" value="Regresar a inicio"  class="boton-7"></a>
+            <a href="ControladorValidar?accion=regresar"><input type="button" value="Regresar a inicio"  class="boton-7"></a>
         </fieldset>
     </div>
     <div class="derecha">

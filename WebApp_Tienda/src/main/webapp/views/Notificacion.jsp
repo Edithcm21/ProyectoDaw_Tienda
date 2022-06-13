@@ -5,7 +5,7 @@
   Time: 06:12 p. m.
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
 <html>
 <head>
     <title>Title</title>
@@ -16,26 +16,32 @@
 <%
     DetalleVentaBin detalle= (DetalleVentaBin) request.getAttribute("detalle");
 %>
-<div class="container col-sm-4">
-<div class="card">
-    <div class="card-header">
+<br>
+<div class="container">
+<div class="row" >
+    <div class="col-sm-4">
+        <div class="card ">
+            <div class="card-body">
+                <label>Folio</label>
+                <input type="text" readonly="" value="<%=detalle.getId_venta()%>" class="form-control" >
+                <label>Id_cliente</label>
+                <input type="text" readonly="" value="<%=detalle.getId_cliente()%>" class="form-control" >
+                <label>Fecha</label>
+                <input type="text" readonly="" value="<%=detalle.getFecha()%>" class="form-control" >
+                <label>Hora</label>
+                <input type="text" readonly="" value="<%=detalle.getHora()%>" class="form-control" >
+                <label>Total</label>
+                <input type="text" readonly="" value="<%=detalle.getTotal()%>" class="form-control" >
+                <label>Estatus de pago</label>
+                <input type="text" readonly="" value="<%=detalle.getEstatus_pago()%>" class="form-control" >
+            </div>
+            <div class="card-footer">
+            <a href="ServletPrincipal?accion=cliente&id=0&id_cliente=<%=detalle.getId_cliente()%>" class="btn btn-danger btn btn-block">Regresar al inicio</a>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-        <label>Folio</label>
-        <input type="text" readonly="" value="<%=detalle.getId_venta()%>" class="form-control" >
-        <label>Id_cliente</label>
-        <input type="text" readonly="" value="<%=detalle.getId_cliente()%>" class="form-control" >
-        <label>Fecha</label>
-        <input type="text" readonly="" value="<%=detalle.getFecha()%>" class="form-control" >
-        <label>Hora</label>
-        <input type="text" readonly="" value="<%=detalle.getHora()%>" class="form-control" >
-        <label>Total</label>
-        <input type="text" readonly="" value="<%=detalle.getTotal()%>" class="form-control" >
-        <label>Estatus de pago</label>
-        <input type="text" readonly="" value="<%=detalle.getEstatus_pago()%>" class="form-control" >
-    </div>
-    <div class="card-footer">
-        <a href="ServletPrincipal?accion=cliente&id=0&id_cliente=<%=detalle.getId_cliente()%>" class="btn btn-danger btn btn-block">Regresar al inicio</a>
+    <div class="col-sm-4">
+        <img src="${pageContext.request.contextPath}/images/PAGO.png" width="100%" alt="">
     </div>
 </div>
 </div>
